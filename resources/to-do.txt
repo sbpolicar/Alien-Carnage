@@ -1,0 +1,4 @@
+-level collisions
+-sounds converten naar bruikbaar formaat (Audacity)
+
+288x144 camera size
