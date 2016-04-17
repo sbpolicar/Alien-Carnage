@@ -79,6 +79,13 @@ void Sprite::SetAnimation(String name)
 
 }
 
+bool Sprite::Flipped()
+{
+
+	return m_Flipped;
+
+}
+
 void Sprite::Flipped(bool flip)
 {
 	

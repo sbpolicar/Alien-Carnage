@@ -222,17 +222,28 @@ void Character::FireFlamethrower(double dTime)
 	{
 		// Calculate the shooting offset
 		DOUBLE2 shootpos = m_ActPtr->GetPosition();
+		DOUBLE2 vel = m_FlamethrowerVelocity;
+		DOUBLE2 offset;
 
+		// Compare to state, set appropriate offset
 		if (m_State == CharacterState::IDLECROUCH)
 		{
-			shootpos += m_FlamethrowerOffsetCrouching;
+			offset = m_FlamethrowerOffsetCrouching;
 		}
 		else
 		{
-			shootpos += m_FlamethrowerOffsetStanding;
+			offset = m_FlamethrowerOffsetStanding;
 		}
+		// Check if flipped, if so reverse our x offset and velocity
+		if (m_SpritePtr->Flipped())
+		{
+			offset.x *= -1;
+			vel.x *= -1;
+		}
+		// Apply the offset
+		shootpos += offset;
 
-		ENT_MANAGER->AddEntity(new Projectile(m_ActPtr->GetPosition() + m_FlamethrowerOffsetStanding, m_SpriteFlamethrowerPtr, m_FlamethrowerVelocity, m_FlamethrowerPhysicsSize, m_FlameLifetime));
+		ENT_MANAGER->AddEntity(new Projectile(shootpos, m_SpriteFlamethrowerPtr, vel, m_FlamethrowerPhysicsSize, m_FlameLifetime));
 		m_FlamethrowerAccuTime -= m_FlamethrowerDelay;
 	}
 

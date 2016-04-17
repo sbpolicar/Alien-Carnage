@@ -25,6 +25,7 @@ public:
 	void AddAnimation(String name, String bitmap, int startCol, int startRow, int rows, int cols, double FPS);
 	void SetAnimation(String name);
 	void SetParent(Sprite* spriteOtherPtr);
+	bool Flipped();
 	void Flipped(bool flip);
 	Sprite* Copy();
 

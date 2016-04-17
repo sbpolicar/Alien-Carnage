@@ -54,8 +54,8 @@ private:
 	Sprite* m_SpriteFlamethrowerPtr = nullptr;
 	const DOUBLE2 m_FlamethrowerPhysicsSize = DOUBLE2(18, 14);
 	const DOUBLE2 m_FlamethrowerVelocity = DOUBLE2(200, 0);
-	const DOUBLE2 m_FlamethrowerOffsetStanding = DOUBLE2(14.0, -4.0);
-	const DOUBLE2 m_FlamethrowerOffsetCrouching = DOUBLE2(14.0, 0.0);
+	const DOUBLE2 m_FlamethrowerOffsetStanding = DOUBLE2(15.0, -4.0);
+	const DOUBLE2 m_FlamethrowerOffsetCrouching = DOUBLE2(15.0, 0.0);
 	const double m_FlameLifetime = 0.25;
 	const double m_FlamethrowerDelay = 0.05;
 	double m_FlamethrowerAccuTime = 0.05;
