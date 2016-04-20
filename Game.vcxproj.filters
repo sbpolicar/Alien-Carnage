@@ -133,6 +133,9 @@
     <ClCompile Include="EntityManager.cpp">
       <Filter>Game Files</Filter>
     </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -403,6 +406,9 @@
       <Filter>Game Files</Filter>
     </ClInclude>
     <ClInclude Include="EntityManager.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
       <Filter>Game Files</Filter>
     </ClInclude>
   </ItemGroup>

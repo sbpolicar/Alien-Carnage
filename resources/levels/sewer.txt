@@ -1,7 +1,7 @@
 <world	
 	background="./resources/images/levels/sewer/background.png"
 	foreground="./resources/images/levels/sewer/foreground.png"
-	collision="./resources/images/levels/sewer/collision.svg"
+	collision="./resources/images/levels/sewer/collisionv2.svg"
 	gravity="80"
 	spawnpos="200,200"
 />

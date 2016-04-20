@@ -7,6 +7,7 @@
 
 class Character;
 class Level;
+class HUD;
 
 class Camera 
 {
@@ -24,9 +25,12 @@ public:
 
 private: 
 
+	// Clamping and tracking
 	void TrackPlayer(DOUBLE2& posRef, Character* charPtr);
 	void ClampToLevel(DOUBLE2& posRef, Level* levelPtr);
 
+	// Vars
+	const DOUBLE2 m_Offset = DOUBLE2(48.0, 28.0); // Our HUD and game aren't actually the same size, the actual game drawn is smaller than our screen (Original res = 320x200)
 	int m_Width;
 	int m_Height;
 

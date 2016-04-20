@@ -10,7 +10,7 @@ class Animation
 public:
 
 	Animation(String name, String bitmap); // For single frame
-	Animation(String name, String bitmap, int startX, int startY, int rows, int cols, double FPS); // For multiple frames
+	Animation(String name, String bitmap, int startCol, int startRow, int rows, int cols, double FPS); // For multiple frames
 	virtual ~Animation( );
 
 	// Make objects non-copyable

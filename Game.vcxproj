@@ -121,6 +121,7 @@ copy "$(ProjectDir)Box2DLib\box2dDebug.idb" "$(OutDir)box2d.idb" /y /D</Command>
     <ClCompile Include="EngineFiles\PhysicsPrismaticJoint.cpp" />
     <ClCompile Include="EngineFiles\PhysicsRevoluteJoint.cpp" />
     <ClCompile Include="EngineFiles\PrecisionTimer.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -215,6 +216,7 @@ copy "$(ProjectDir)Box2DLib\box2dDebug.idb" "$(OutDir)box2d.idb" /y /D</Command>
     <ClInclude Include="EngineFiles\PhysicsPrismaticJoint.h" />
     <ClInclude Include="EngineFiles\PhysicsRevoluteJoint.h" />
     <ClInclude Include="EngineFiles\PrecisionTimer.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="resource.h" />

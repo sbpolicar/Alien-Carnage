@@ -1,4 +1,7 @@
--level collisions
--sounds converten naar bruikbaar formaat (Audacity)
-
-288x144 camera size
+-Enemies
+-Triggerable doors
+-Vendors
+-Coin pickups
+-Convert sounds
+-Audio
+-More weapons

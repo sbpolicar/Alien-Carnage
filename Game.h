@@ -24,6 +24,7 @@
 class Character;
 class Camera;
 class Level;
+class HUD;
 
 //-----------------------------------------------------------------
 // Game Class																
@@ -69,9 +70,10 @@ private:
 	// -------------------------
 
 	// Core stuff
-	Character* m_Player = nullptr;
-	Camera* m_Camera = nullptr;
-	Level* m_Level = nullptr;
+	Character* m_PlayerPtr = nullptr;
+	Camera* m_CameraPtr = nullptr;
+	Level* m_LevelPtr = nullptr;
+	HUD* m_HUDPtr = nullptr;
 
 	// Debugging
 	bool m_DebugMode = false;
