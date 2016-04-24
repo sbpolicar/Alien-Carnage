@@ -6,8 +6,10 @@
 #include "stdafx.h"		
 #include "Projectile.h"
 #include "Sprite.h"
+#include "EntityManager.h"
 
 #define GAME_ENGINE (GameEngine::GetSingleton())
+#define ENT_MANAGER (EntityManager::GetInstance())
 
 Projectile::Projectile(DOUBLE2 pos, Sprite* spriteRef, DOUBLE2 vel, DOUBLE2 hitSize, double lifeTime) : Entity(pos, hitSize, BodyType::KINEMATIC, spriteRef)
 {
@@ -27,16 +29,24 @@ Projectile::Projectile(DOUBLE2 pos, Sprite* spriteRef, DOUBLE2 vel, DOUBLE2 hitS
 
 Projectile::~Projectile()
 {
+
+	Entity::~Entity();
+
 }
 
 void Projectile::BeginContact(PhysicsActor* actThisPtr, PhysicsActor* actOtherPtr)
 {
 
 	// Check if the other actor is an enemy / the world / an entity or whatever else should take damage
+	// So anything but the player, reall
+	if (actOtherPtr->GetUserData() == int(EntityType::PLAYER))
+	{
+		// It's the player, ignore collision
+		return;
+	}
+
 	// WIP
 	std::cout << "HIT" << std::endl;
-
-	// Destroy this projectile
 
 }
 

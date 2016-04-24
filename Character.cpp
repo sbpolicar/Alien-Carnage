@@ -8,7 +8,7 @@
 #include "Sprite.h"
 #include "Level.h"
 #include "EntityManager.h"
-#include "Projectile.h" // TEMP TEMP TEMP
+#include "Projectile.h"
 
 #define GAME_ENGINE (GameEngine::GetSingleton())
 #define ENT_MANAGER (EntityManager::GetInstance())
@@ -26,6 +26,7 @@ Character::Character(Level* levelRef)
 	m_ActPtr = new PhysicsActor(m_LevelPtr->GetSpawnPosition(), 0, BodyType::DYNAMIC);
 	m_ActPtr->AddBoxFixture(22, 34, 0.0, 0.0);
 	m_ActPtr->SetFixedRotation(true);
+	m_ActPtr->SetUserData(int(EntityType::PLAYER)); // Make sure everything else knows this is the player
 
 	// Create the Sprite and add our animations
 	m_SpritePtr = new Sprite();
@@ -151,6 +152,17 @@ void Character::TakeDamage(double amount)
 	if (m_Health < 0)
 	{
 		m_Health = 0;
+	}
+
+}
+
+void Character::GiveScore(int amount)
+{
+
+	// No negative scores
+	if (amount > 0)
+	{
+		m_Score += amount;
 	}
 
 }

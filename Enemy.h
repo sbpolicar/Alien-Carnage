@@ -1,20 +1,33 @@
 #pragma once
 //-----------------------------------------------------------------
 // Student data
-// Name:
-// Group: 1DAE..
+// Name: Van Handenhove Brent
+// Group: 1DAE16
 //-----------------------------------------------------------------
 
-class Y 
+#include "ContactListener.h"
+
+class Sprite;
+
+class Enemy : ContactListener
 {
 public:
-	Y( );
-	virtual ~Y( );
+
+	Enemy(DOUBLE2 pos, DOUBLE2 actSize, Sprite* spriteRef);
+	virtual ~Enemy();
+
 	// Make objects non-copyable
 	// https://msdn.microsoft.com/en-us/library/dn457344.aspx 
-	Y( const Y& ) = delete;
-	Y& operator=( const Y& ) = delete;
+	Enemy( const Enemy& ) = delete;
+	Enemy& operator=( const Enemy& ) = delete;
+
+	void BeginContact(PhysicsActor* actThisPtr, PhysicsActor* actOtherPtr);
+	virtual void Tick(double dTime) = 0;
+	virtual void Paint() = 0;
 
 private: 
+	
+	// Physics
+	PhysicsActor* m_ActPtr = nullptr;
 
 };

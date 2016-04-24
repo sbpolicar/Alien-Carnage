@@ -12,6 +12,7 @@ class Entity
 public:
 
 	Entity(DOUBLE2 pos, DOUBLE2 actSize, BodyType actBodyType, Sprite* spriteRef);
+	Entity(DOUBLE2 pos, DOUBLE2 actSize, BodyType actBodyType); // In case the entity manages its own sprite
 	virtual ~Entity( );
 
 	// Make objects non-copyable
@@ -19,6 +20,8 @@ public:
 	Entity( const Entity& ) = delete;
 	Entity& operator=( const Entity& ) = delete;
 
+	virtual void FlagDestroy();
+	
 	virtual void Tick(double dTime);
 	virtual void Paint();
 
@@ -26,6 +29,7 @@ protected:
 
 	// Destroy the entity
 	void DestroyEntity();
+	bool m_ShouldDestroy = false;
 
 	// Stuff every entity needs
 	PhysicsActor* m_ActPtr = nullptr;

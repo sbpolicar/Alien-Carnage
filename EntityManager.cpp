@@ -6,6 +6,7 @@
 #include "stdafx.h"		
 #include "EntityManager.h"
 #include "Entity.h"
+#include "Character.h"
 
 #define GAME_ENGINE (GameEngine::GetSingleton())
 
@@ -103,6 +104,20 @@ void EntityManager::RemoveEntity(Entity* ent)
 			return;
 		}
 	}
+
+}
+
+void EntityManager::SetPlayer(Character* playerRef)
+{
+
+	m_CharacterPtr = playerRef;
+
+}
+
+Character* EntityManager::GetPlayer()
+{
+
+	return m_CharacterPtr;
 
 }
 

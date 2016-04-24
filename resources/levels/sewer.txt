@@ -6,6 +6,16 @@
 	spawnpos="200,200"
 />
 <ent
-	type="spike"
-	sprite="idle{./resources/images/entities/spike_trap.png}"
+	type="trigger"
+	pos="300,510"
+	doorpos="554,809"
+/>
+<ent
+	type="trigger"
+	pos="691,1360"
+	doorpos="568, 1220"
+/>
+<ent
+	type="captive"
+	pos="346, 1200"
 />

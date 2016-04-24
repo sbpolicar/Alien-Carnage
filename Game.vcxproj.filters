@@ -136,6 +136,15 @@
     <ClCompile Include="HUD.cpp">
       <Filter>Game Files</Filter>
     </ClCompile>
+    <ClCompile Include="Trigger.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Captive.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -409,6 +418,15 @@
       <Filter>Game Files</Filter>
     </ClInclude>
     <ClInclude Include="HUD.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Captive.h">
       <Filter>Game Files</Filter>
     </ClInclude>
   </ItemGroup>

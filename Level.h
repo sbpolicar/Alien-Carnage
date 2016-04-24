@@ -5,6 +5,8 @@
 // Group: 1DAE16
 //-----------------------------------------------------------------
 
+class Character;
+
 class Level 
 {
 public:
@@ -38,7 +40,8 @@ private:
 	std::string FindParseValue(const std::string& valName, const std::string& objectRef);
 	DOUBLE2 StringToDOUBLE2(const std::string&);
 	void CreateWorld(const std::string& worldRef);
-	void CreateEntity();
+	void CreateTrigger(const std::string& entRef);
+	void CreateCaptive(const std::string& entRef);
 	void CleanUpWorld();
 
 	// World
@@ -52,5 +55,5 @@ private:
 	int m_Width = 0;
 	int m_Height = 0;
 	DOUBLE2 m_SpawnPosition = DOUBLE2(0, 0);
-
+	
 };

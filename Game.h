@@ -59,7 +59,7 @@ public:
 	// -------------------------
 	// Public Member functions
 	// -------------------------
-
+	
 private:
 	// -------------------------
 	// Private Member functions
@@ -70,7 +70,7 @@ private:
 	// -------------------------
 
 	// Core stuff
-	Character* m_PlayerPtr = nullptr;
+	Character* m_CharacterPtr = nullptr;
 	Camera* m_CameraPtr = nullptr;
 	Level* m_LevelPtr = nullptr;
 	HUD* m_HUDPtr = nullptr;

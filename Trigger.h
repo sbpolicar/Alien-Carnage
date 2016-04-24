@@ -1,20 +1,39 @@
 #pragma once
 //-----------------------------------------------------------------
 // Student data
-// Name:
-// Group: 1DAE..
+// Name: Van Handenhove Brent
+// Group: 1DAE16
 //-----------------------------------------------------------------
 
-class Y 
+#include "ContactListener.h"
+#include "Entity.h"
+
+class Trigger : public Entity, ContactListener
 {
 public:
-	Y( );
-	virtual ~Y( );
+
+	Trigger(DOUBLE2 pos, DOUBLE2 doorPos);
+	virtual ~Trigger( );
+
 	// Make objects non-copyable
 	// https://msdn.microsoft.com/en-us/library/dn457344.aspx 
-	Y( const Y& ) = delete;
-	Y& operator=( const Y& ) = delete;
+	Trigger( const Trigger& ) = delete;
+	Trigger& operator=( const Trigger& ) = delete;
 
-private: 
+	void Activate();
+	void BeginContact(PhysicsActor* actThisPtr, PhysicsActor* actOtherPtr);
+
+	void Paint();
+
+private:
+	
+	// Physics
+	const DOUBLE2 m_ActSize = DOUBLE2(20, 24);
+
+	// Trigger door
+	int m_TriggerID = 0;
+	bool m_Activated = false;
+	Entity* m_EntDoorPtr = nullptr;
+	Sprite* m_SpriteDoorPtr = nullptr;
 
 };

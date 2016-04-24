@@ -5,13 +5,17 @@
 //-----------------------------------------------------------------
 #include "stdafx.h"		
 #include "Level.h"
+#include "Sprite.h"
+#include "EntityManager.h"
+#include "Trigger.h"
+#include "Captive.h"
 #include <fstream>
 
 #define GAME_ENGINE (GameEngine::GetSingleton())
+#define ENT_MANAGER (EntityManager::GetInstance())
 
 Level::Level()
 {
-
 }
 
 Level::Level(String path)
@@ -110,6 +114,17 @@ void Level::ParseObject(const std::string& objectRef)
 	{
 		std::cout << "\nParsing world" << std::endl;
 		CreateWorld(objectRef);
+		std::cout << std::endl;
+	}
+	else if (objectRef.find("trigger") != std::string::npos)
+	{
+		std::cout << "Creating trigger" << std::endl;
+		CreateTrigger(objectRef);
+	}
+	else if (objectRef.find("captive") != std::string::npos)
+	{
+		std::cout << "Creating captive" << std::endl;
+		CreateCaptive(objectRef);
 	}
 
 }
@@ -176,6 +191,31 @@ void Level::CreateWorld(const std::string& worldRef)
 
 }
 
+void Level::CreateTrigger(const std::string& entRef)
+{
+		
+	// Get the position
+	std::string pos = FindParseValue("pos", entRef);
+	// Get the doorpos
+	std::string doorPos = FindParseValue("doorpos", entRef);
+
+	// Create the trigger
+	new Trigger(StringToDOUBLE2(pos), StringToDOUBLE2(doorPos));
+
+}
+
+void Level::CreateCaptive(const std::string& entRef)
+{
+
+	// Position
+	std::string pos = FindParseValue("pos", entRef);
+
+	// Create the captive
+	new Captive(StringToDOUBLE2(pos));
+
+
+}
+
 int Level::GetWidth()
 {
 
@@ -214,6 +254,8 @@ bool Level::IsOnGround(PhysicsActor* actOtherPtr)
 
 void Level::Tick(double dTime)
 {
+
+	// Cant use this yet, dont have animated background files
 
 }
 

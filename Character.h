@@ -26,6 +26,7 @@ public:
 	// Gameplay things
 	void TakeDamage(double amount);
 	void GiveCredits(int amount);
+	void GiveScore(int amount);
 	void GiveFuel(double amount);
 	void GiveLives(int amount);
 
