@@ -18,9 +18,9 @@ Sprite::~Sprite()
 {
 
 	// Clean up the animations
-	for (Animation* anim : m_Animations)
+	for (Animation* animPtr : m_Animations)
 	{
-		delete anim;
+		delete animPtr;
 	}
 	m_Animations.clear();
 
@@ -29,18 +29,18 @@ Sprite::~Sprite()
 Sprite* Sprite::Copy()
 {
 
-	Sprite* copy = new Sprite();
+	Sprite* copyPtr = new Sprite();
 
 	// Copy the animations
 	for (size_t i = 0; i < m_Animations.size(); ++i)
 	{
 		Animation* anim = m_Animations[i];
-		copy->AddAnimation(anim->GetName(), anim->GetPath(), 0, 0, anim->GetRows(), anim->GetCols(), anim->GetFPS());
+		copyPtr->AddAnimation(anim->GetName(), anim->GetPath(), 0, 0, anim->GetRows(), anim->GetCols(), anim->GetFPS());
 	}
 	// Set the current animation
-	copy->SetAnimation(m_CurrentAnim->GetName());
+	copyPtr->SetAnimation(m_CurrentAnim->GetName());
 
-	return copy;
+	return copyPtr;
 
 }
 

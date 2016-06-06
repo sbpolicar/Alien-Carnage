@@ -6,8 +6,11 @@
 //-----------------------------------------------------------------
 
 class Character;
+class Sprite;
 
-class Level 
+#include "ContactListener.h"
+
+class Level : public ContactListener
 {
 public:
 
@@ -25,9 +28,12 @@ public:
 	int GetWidth();
 	int GetHeight();
 	double GetScale();
+	void SetScale(double scale);
 
 	DOUBLE2 GetSpawnPosition();
 	bool IsOnGround(PhysicsActor* actOtherPtr);
+
+	void BeginContact(PhysicsActor* actThisPtr, PhysicsActor* actOtherPtr); // Will be used for water effects
 
 	void Tick(double dTime);
 	void PaintBackground();
@@ -42,14 +48,28 @@ private:
 	void CreateWorld(const std::string& worldRef);
 	void CreateTrigger(const std::string& entRef);
 	void CreateCaptive(const std::string& entRef);
+	void CreateEnemy(const std::string& entRef);
+	void CreateVendor(const std::string& entRef);
+	void CreateCheckpoint(const std::string& entRef);
+	void CreateSpiketrap(const std::string& entRef);
 	void CleanUpWorld();
 
 	// World
 	PhysicsActor* m_ActWorldPtr = nullptr;
+	PhysicsActor* m_ActWaterPtr = nullptr;
 	Bitmap* m_BmpForegroundPtr = nullptr;
 	Bitmap* m_BmpBackgroundPtr = nullptr;	
+
+	// Water effect stuff
+	Sprite* m_SpriteWaterEffectPtr = nullptr;
+	const double m_WaterEffectLifetime = 0.4;
+
+	// Music for this zone/level
+	FmodSound* m_SndMusicPtr = nullptr;
+	bool m_MusicMuted = false;
+
 	// World rescale to fit a bigger window without having to manually rescale all sprites and whatnot
-	const double m_Scale = 4.0;
+	double m_Scale = 4.0;
 
 	// Level properties
 	int m_Width = 0;

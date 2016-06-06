@@ -1,21 +1,59 @@
 <world	
-	background="./resources/images/levels/sewer/background.png"
+background="./resources/images/levels/sewer/background.png"
 	foreground="./resources/images/levels/sewer/foreground.png"
-	collision="./resources/images/levels/sewer/collisionv2.svg"
-	gravity="80"
+	collision="./resources/images/levels/sewer/collisionv3.svg"	water="./resources/images/levels/sewer/water.svg"
+	music="./resources/audio/music/zone1.mp3"	gravity="80"
 	spawnpos="200,200"
-/>
-<ent
-	type="trigger"
-	pos="300,510"
+	finish="665,1800"/>
+
+<trigger
+	pos="300,508"
 	doorpos="554,809"
 />
-<ent
-	type="trigger"
-	pos="691,1360"
-	doorpos="568, 1220"
+
+<trigger	
+pos="691,1348"
+	doorpos="568,1224"
 />
-<ent
-	type="captive"
-	pos="346, 1200"
+
+<trigger	pos="745,2244"	doorpos="745,1800"/>
+<checkpoint	pos="440,1326"/>
+<spiketrap>	pos="725,2140"/>
+<captive
+	pos="745,248"
 />
+<captive
+	pos="346,1200"
+/>
+<captive
+	pos="258,440"
+/>
+<captive
+	pos="740,1454"
+/>
+<captive
+	pos="415,1407"
+/>
+<captive
+	pos="415,2060"
+/>
+<captive
+	pos="777,2080"
+/>
+<captive	pos="317,1870"/>
+<captive	pos="657,1726"/>
+<vendor	type="1"	pos="483,1324"/>
+<vendor	type="3"	pos="646,356"/>
+<vendor	type="1"	pos="550,2076"/>
+<vendor	type="3"	pos="275,1516"/>
+<vendor	type="4"	pos="777,1340"/>
+<vendor	type="2"	pos="796,1452"/>
+<vendor	type="4"	pos="400,1594"/>
+<enemy	type="squid"	pos="297,500"/>
+<enemy	type="squid"	pos="344,830"/>
+<enemy	type="squid"	pos="220,1437"/>
+<enemy	type="turtle"	pos="216,1765"/>
+<enemy	type="spider"	pos="300,1320"/>
+<enemy	type="slug"	pos="222,1982"/>
+<enemy	type="slug"	pos="280,2244"/>
+<enemy	type="zombie"	pos="393,1332"/>

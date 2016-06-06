@@ -9,6 +9,7 @@
 #include "../stdafx.h" // for intellisense
 
 #include "PhysicsActor.h"
+#include "../EntityManager.h" // Custom - Entity Manager  (we will be setting every userdata default as World)
 
 
 // http://www.iforce2d.net/b2dtut
@@ -17,6 +18,7 @@
 PhysicsActor::PhysicsActor(DOUBLE2 pos, double angle, BodyType bodyType)
 {
 	CreateBody(pos, angle, bodyType);
+	SetUserData(int(EntityType::WORLD)); // Default as world
 }
 PhysicsActor::PhysicsActor(double posX, double posY, double angle, BodyType bodyType)
 {

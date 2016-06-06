@@ -100,9 +100,6 @@
     <ClCompile Include="EngineFiles\FmodSound.cpp">
       <Filter>Engine Files\Core\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Game Files</Filter>
-    </ClCompile>
     <ClCompile Include="EngineFiles\PhysicsWeldJoint.cpp">
       <Filter>Engine Files\Core\Box2D</Filter>
     </ClCompile>
@@ -143,6 +140,54 @@
       <Filter>Game Files</Filter>
     </ClCompile>
     <ClCompile Include="Captive.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Squid.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Spider.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Turtle.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpawner.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AlienCarnage_Van_Handenhove_Brent.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Checkpoint.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpikeTrap.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Finish.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sludge.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Slug.cpp">
+      <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
       <Filter>Game Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -360,9 +405,6 @@
     <ClInclude Include="EngineFiles\FmodSound.h">
       <Filter>Engine Files\Core\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Game Files</Filter>
-    </ClInclude>
     <ClInclude Include="FMOD\inc\fmod.h">
       <Filter>FMOD</Filter>
     </ClInclude>
@@ -427,6 +469,54 @@
       <Filter>Game Files</Filter>
     </ClInclude>
     <ClInclude Include="Captive.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Squid.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Spider.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Turtle.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawner.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AlienCarnage_Van_Handenhove_Brent.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Checkpoint.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpikeTrap.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Finish.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sludge.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Slug.h">
+      <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
       <Filter>Game Files</Filter>
     </ClInclude>
   </ItemGroup>

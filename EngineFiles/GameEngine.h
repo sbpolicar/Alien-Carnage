@@ -332,6 +332,14 @@ public:
 	//! Set the Box2D world gravity vector
 	void SetGravity(DOUBLE2 gravity);
 
+	//! Gets the game's current pause state
+	//! Returns a boolean
+	bool IsPaused();
+
+	//! Set the game's current pause state
+	//! @param pauseRef boolean paused or not
+	void SetPaused(const bool& pausedRef);
+
 private:
 
 #ifndef WRAPPER_LIB
@@ -471,6 +479,9 @@ private:
 	//Audio
 	AudioSystem *m_XaudioPtr = nullptr;
 	FmodSystem *m_FmodSystemPtr = nullptr;
+
+	// Pausing
+	bool m_GameIsPaused = false;
 
 	//Friends
 	friend class GUIBase;

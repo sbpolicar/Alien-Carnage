@@ -11,8 +11,9 @@ class Entity
 {
 public:
 
-	Entity(DOUBLE2 pos, DOUBLE2 actSize, BodyType actBodyType, Sprite* spriteRef);
-	Entity(DOUBLE2 pos, DOUBLE2 actSize, BodyType actBodyType); // In case the entity manages its own sprite
+	Entity();
+	Entity(DOUBLE2 pos, DOUBLE2 actSize, BodyType actBodyType, Sprite* spritePtr);
+	Entity(DOUBLE2 pos, DOUBLE2 actSize, BodyType actBodyType);
 	virtual ~Entity( );
 
 	// Make objects non-copyable

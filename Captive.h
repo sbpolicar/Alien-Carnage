@@ -1,8 +1,8 @@
 #pragma once
 //-----------------------------------------------------------------
 // Student data
-// Name:
-// Group: 1DAE..
+// Name: Van Handenhove Brent
+// Group: 1DAE16
 //-----------------------------------------------------------------
 
 #include "Entity.h"
@@ -23,17 +23,19 @@ public:
 	Captive& operator=( const Captive& ) = delete;
 
 	void Tick(double dTime);
-	void Paint();
 
 	void BeginContact(PhysicsActor* actThisPtr, PhysicsActor* actOtherPtr);
 
 private: 
 
 	// Config
-	const double m_LiveTimeAfterRescue = 1.0;
+	double m_LiveTimeAfterRescue = 1.0;
 	const int m_ScoreReward = 1000;
 
 	bool m_Rescued = false;
 	double m_AccuTime = 0.0;
+
+	// Sound
+	FmodSound* m_SndRescuedPtr = nullptr;
 
 };

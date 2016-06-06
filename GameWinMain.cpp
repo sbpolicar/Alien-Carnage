@@ -16,7 +16,7 @@
 #include <Initguid.h>
 #include <dxgidebug.h>
 
-#include "Game.h"
+#include "AlienCarnage_Van_Handenhove_Brent.h"
 
 //-----------------------------------------------------------------
 // Defines
@@ -55,7 +55,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char * szCmdLin
 
 	int returnValue = 0;
 
-	GAME_ENGINE->SetGame(new Game());
+	GAME_ENGINE->SetGame(new AlienCarnage_Van_Handenhove_Brent());
 	returnValue = GAME_ENGINE->Run(hInstance, iCmdShow); // run the game engine and return the result
 
 	// Destroy the game engine

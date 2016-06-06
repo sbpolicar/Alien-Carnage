@@ -69,10 +69,3 @@ void Trigger::BeginContact(PhysicsActor* actThisPtr, PhysicsActor* actOtherPtr)
 	}
 
 }
-
-void Trigger::Paint()
-{
-
-	m_SpritePtr->Paint(m_ActPtr->GetPosition());
-
-}

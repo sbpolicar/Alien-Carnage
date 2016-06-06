@@ -23,8 +23,6 @@ public:
 	void Activate();
 	void BeginContact(PhysicsActor* actThisPtr, PhysicsActor* actOtherPtr);
 
-	void Paint();
-
 private:
 	
 	// Physics

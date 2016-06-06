@@ -14,6 +14,7 @@
     <ProjectGuid>{65FE775A-8525-4C8D-97DC-AD30A84B2A2E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Prog1All20152016</RootNamespace>
+    <ProjectName>AlienCarnage_Van_Handenhove_Brent</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -102,7 +103,12 @@ copy "$(ProjectDir)Box2DLib\box2dDebug.idb" "$(OutDir)box2d.idb" /y /D</Command>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Captive.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Checkpoint.cpp" />
+    <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="EnemySpawner.cpp" />
     <ClCompile Include="EngineFiles\Bitmap.cpp" />
     <ClCompile Include="EngineFiles\Box2DDebugRenderer.cpp" />
     <ClCompile Include="EngineFiles\Button.cpp" />
@@ -115,6 +121,7 @@ copy "$(ProjectDir)Box2DLib\box2dDebug.idb" "$(OutDir)box2d.idb" /y /D</Command>
     <ClCompile Include="EngineFiles\PhysicsWeldJoint.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="Finish.cpp" />
     <ClCompile Include="GameWinMain.cpp" />
     <ClCompile Include="EngineFiles\GUIBase.cpp" />
     <ClCompile Include="EngineFiles\InputManager.cpp" />
@@ -126,7 +133,13 @@ copy "$(ProjectDir)Box2DLib\box2dDebug.idb" "$(OutDir)box2d.idb" /y /D</Command>
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Sludge.cpp" />
+    <ClCompile Include="Slug.cpp" />
+    <ClCompile Include="Spider.cpp" />
+    <ClCompile Include="SpikeTrap.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="Squid.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -136,8 +149,11 @@ copy "$(ProjectDir)Box2DLib\box2dDebug.idb" "$(OutDir)box2d.idb" /y /D</Command>
     <ClCompile Include="EngineFiles\SVGParser.cpp" />
     <ClCompile Include="EngineFiles\TextBox.cpp" />
     <ClCompile Include="ContactListener.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="AlienCarnage_Van_Handenhove_Brent.cpp" />
     <ClCompile Include="Trigger.cpp" />
+    <ClCompile Include="Turtle.cpp" />
+    <ClCompile Include="Vendor.cpp" />
+    <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractGame.h" />
@@ -145,7 +161,12 @@ copy "$(ProjectDir)Box2DLib\box2dDebug.idb" "$(OutDir)box2d.idb" /y /D</Command>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Captive.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Checkpoint.h" />
+    <ClInclude Include="Coin.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="EnemySpawner.h" />
     <ClInclude Include="EngineFiles\Bitmap.h" />
     <ClInclude Include="EngineFiles\Box2DDebugRenderer.h" />
     <ClInclude Include="Box2DInclude\Box2D\Box2D.h" />
@@ -205,6 +226,7 @@ copy "$(ProjectDir)Box2DLib\box2dDebug.idb" "$(OutDir)box2d.idb" /y /D</Command>
     <ClInclude Include="EngineFiles\PhysicsWeldJoint.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="Finish.h" />
     <ClInclude Include="FMOD\inc\fmod.h" />
     <ClInclude Include="FMOD\inc\fmod.hpp" />
     <ClInclude Include="FMOD\inc\fmod_codec.h" />
@@ -225,15 +247,24 @@ copy "$(ProjectDir)Box2DLib\box2dDebug.idb" "$(OutDir)box2d.idb" /y /D</Command>
     <ClInclude Include="Level.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Sludge.h" />
+    <ClInclude Include="Slug.h" />
+    <ClInclude Include="Spider.h" />
+    <ClInclude Include="SpikeTrap.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Squid.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="EngineFiles\String.h" />
     <ClInclude Include="EngineFiles\Structs.h" />
     <ClInclude Include="EngineFiles\SVGParser.h" />
     <ClInclude Include="EngineFiles\TextBox.h" />
     <ClInclude Include="ContactListener.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="AlienCarnage_Van_Handenhove_Brent.h" />
     <ClInclude Include="Trigger.h" />
+    <ClInclude Include="Turtle.h" />
+    <ClInclude Include="Vendor.h" />
+    <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="big.ico" />

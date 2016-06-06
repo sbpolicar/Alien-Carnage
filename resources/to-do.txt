@@ -1,7 +1,2 @@
--Enemies
--Triggerable doors
--Vendors
--Coin pickups
--Convert sounds
--Audio
--More weapons
+-More weapons and projectiles
+-Zombie

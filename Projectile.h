@@ -14,7 +14,8 @@ class Projectile : public Entity, ContactListener
 {
 public:
 
-	Projectile(DOUBLE2 pos, Sprite* spriteRef, DOUBLE2 vel, DOUBLE2 hitSize, double lifeTime);
+	Projectile(DOUBLE2 pos, Sprite* spritePtr, DOUBLE2 vel, DOUBLE2 hitSize, double lifeTime);
+	Projectile(DOUBLE2 pos, Sprite* spritePtr, DOUBLE2 vel, DOUBLE2 hitSize, double lifeTime, double damage);
 	virtual ~Projectile( );
 
 	// Make objects non-copyable
@@ -23,8 +24,7 @@ public:
 	Projectile& operator=( const Projectile& ) = delete;
 
 	void Tick(double dTime);
-	void Paint();
-	void BeginContact(PhysicsActor *actThisPtr, PhysicsActor *actOtherPtr);
+	void BeginContact(PhysicsActor* actThisPtr, PhysicsActor* actOtherPtr);
 
 private: 
 
@@ -33,6 +33,9 @@ private:
 	double m_TimeLived = 0.0;
 	
 	// Movement
-	DOUBLE2 m_Velocity = DOUBLE2(0, 0);
+	DOUBLE2 m_Velocity = DOUBLE2(0, 0); // non initialize = 0,0 default
+
+	// Damaging
+	double m_Damage = 0;
 
 };

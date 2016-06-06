@@ -6,8 +6,10 @@
 #include "stdafx.h"		
 #include "Animation.h"
 #include <fstream>
+#include "ResourceManager.h"
 
 #define GAME_ENGINE (GameEngine::GetSingleton())
+#define RESOURCE_MANAGER (ResourceManager::GetInstance())
 
 Animation::Animation(String name, String bitmap)
 	: m_AnimationName(name)
@@ -57,7 +59,8 @@ void Animation::SetBitmap(String bitmap)
 
 		// Path exists, continue creating
 		std::cout << "ANIMATION Initializing: " << bitmap.C_str() << std::endl;
-		m_BmpImagePtr = new Bitmap(bitmap);
+		m_BmpImagePtr = RESOURCE_MANAGER->GetBitmap(bitmap);
+		//m_BmpImagePtr = new Bitmap(bitmap);
 
 		// Get some stuff ready for animating
 		m_FrameW = m_BmpImagePtr->GetWidth() / m_Cols;
@@ -69,14 +72,7 @@ void Animation::SetBitmap(String bitmap)
 
 Animation::~Animation()
 {
-
-	// Clear the bitmap if it exists
-	if (m_BmpImagePtr != nullptr)
-	{
-		delete m_BmpImagePtr;
-		m_BmpImagePtr = nullptr;
-	}
-
+	
 }
 
 String Animation::GetName()

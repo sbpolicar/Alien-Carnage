@@ -1,20 +1,38 @@
 #pragma once
 //-----------------------------------------------------------------
 // Student data
-// Name:
-// Group: 1DAE..
+// Name: Van Handenhove Brent
+// Group: 1DAE16
 //-----------------------------------------------------------------
 
-class Y 
+#include "Entity.h"
+#include "ContactListener.h"
+
+class Character;
+
+class Vendor : public Entity
 {
 public:
-	Y( );
-	virtual ~Y( );
-	// Make objects non-copyable
-	// https://msdn.microsoft.com/en-us/library/dn457344.aspx 
-	Y( const Y& ) = delete;
-	Y& operator=( const Y& ) = delete;
+
+	Vendor(DOUBLE2 pos, int type);
+	virtual ~Vendor();
+
+	// Make objects non-copVendorable
+	// https://msdn.microsoft.com/en-us/librarVendor/dn457344.aspx 
+	Vendor( const Vendor& ) = delete;
+	Vendor& operator=( const Vendor& ) = delete;
+
+	bool IsOverlapping(PhysicsActor* actOtherPtr);
+	bool Buy(Character* characterPtr);
 
 private: 
+	
+	enum VendorType
+	{
+		FUEL, PULSEAMMO, GRENADES, MISSILES
+	};
+
+	VendorType m_Type = FUEL;
+	const int m_Cost = 5;
 
 };

@@ -221,9 +221,19 @@ int GameEngine::Run(HINSTANCE hInstance, int iCmdShow)
 					// Call the Game Tick method
 					m_GamePtr->GameTick(m_PhysicsTimeStep);
 
-					int32 velocityIterations = 6;
-					int32 positionIterations = 2;
-					m_Box2DWorldPtr->Step((float)m_PhysicsTimeStep, velocityIterations, positionIterations);
+					// Pausing
+					if (IsKeyboardKeyPressed(VK_ESCAPE))
+					{
+						SetPaused(!IsPaused());
+					}
+
+					if (!m_GameIsPaused)
+					{
+						int32 velocityIterations = 6;
+						int32 positionIterations = 2;
+						m_Box2DWorldPtr->Step((float)m_PhysicsTimeStep, velocityIterations, positionIterations);
+					}
+					// End of my sloppy pause system :)
 
 					// Step generates contact lists, pass to Listeners and clear the vector
 					// CallListeners();
@@ -1489,6 +1499,16 @@ bool GameEngine::D2DEndPaint()
 void GameEngine::SetGravity(const DOUBLE2 gravity)
 {
 	m_Box2DWorldPtr->SetGravity(b2Vec2((float32)gravity.x, (float32)gravity.y));
+}
+
+bool GameEngine::IsPaused()
+{
+	return m_GameIsPaused;
+}
+
+void GameEngine::SetPaused(const bool& pausedRef)
+{
+	m_GameIsPaused = pausedRef;
 }
 
 // Box2D overloads

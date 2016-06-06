@@ -9,6 +9,12 @@
 #include "EntityManager.h"
 #include "Trigger.h"
 #include "Captive.h"
+#include "Vendor.h"
+#include "Checkpoint.h"
+#include "SpikeTrap.h"
+#include "Finish.h"
+#include "Effect.h"
+#include "Character.h"
 #include <fstream>
 
 #define GAME_ENGINE (GameEngine::GetSingleton())
@@ -46,18 +52,33 @@ void Level::CleanUpWorld()
 	m_BmpBackgroundPtr = nullptr;
 	delete m_ActWorldPtr;
 	m_ActWorldPtr = nullptr;
+	delete m_ActWaterPtr;
+	m_ActWaterPtr = nullptr;
+	delete m_SpriteWaterEffectPtr;
+	m_SpriteWaterEffectPtr = nullptr;
+	delete m_SndMusicPtr;
+	m_SndMusicPtr = nullptr;
 
 }
 
 void Level::Load(String path)
 {
 
-	// Check if the file extension is .txt
-	String extension = path.SubStr(path.Rfind(String(".")));
-	if (extension != String(".txt"))
+	// Check if there's a . that isn't the first one
+	if (path.Rfind(String(".")) == path.Find(String(".")))
 	{
-		std::cout << "LEVEL Invalid format" << std::endl;
-		return;
+		std::cout << "LEVEL Missing extension, adding it to path" << std::endl;
+		path += String(".txt");
+	}
+	else
+	{
+		// Check if the file extension is .txt
+		String extension = path.SubStr(path.Rfind(String(".")));
+		if (extension != String(".txt"))
+		{
+			std::cout << "LEVEL Invalid format" << std::endl;
+			return;
+		}
 	}
 
 	// Find the file and parse it to generate our level
@@ -67,7 +88,7 @@ void Level::Load(String path)
 	if (fStream.fail())
 	{
 		// The path doesn't exist, report error and ignore
-		std::cout << "LEVEL Error not found: " << path.C_str() << std::endl;
+		std::cout << "LEVEL Path not found: " << path.C_str() << std::endl;
 		return;
 	}
 	else
@@ -126,6 +147,26 @@ void Level::ParseObject(const std::string& objectRef)
 		std::cout << "Creating captive" << std::endl;
 		CreateCaptive(objectRef);
 	}
+	else if (objectRef.find("enemy") != std::string::npos)
+	{
+		std::cout << "Creating enemy" << std::endl;
+		CreateEnemy(objectRef);
+	}
+	else if (objectRef.find("vendor") != std::string::npos)
+	{
+		std::cout << "Creating vendor" << std::endl;
+		CreateVendor(objectRef);
+	}
+	else if (objectRef.find("checkpoint") != std::string::npos)
+	{
+		std::cout << "Creating checkpoint" << std::endl;
+		CreateCheckpoint(objectRef);
+	}
+	else if (objectRef.find("spiketrap") != std::string::npos)
+	{
+		std::cout << "Creating spiketrap" << std::endl;
+		CreateSpiketrap(objectRef);
+	}
 
 }
 
@@ -159,24 +200,78 @@ DOUBLE2 Level::StringToDOUBLE2(const std::string& stringRef)
 void Level::CreateWorld(const std::string& worldRef)
 {
 
-	// Make sure our world is empty before we start to avoid memory leaks when loading through levels
+	// Make sure our world is empty before we start to avoid memory leaks when loading through levels (if added)
 	CleanUpWorld();
 
 	// Start setting our background, foreground and collision
 	std::string fg = FindParseValue("foreground", worldRef);
 	std::string bg = FindParseValue("background", worldRef);
 	std::string col = FindParseValue("collision", worldRef);
+	std::string water = FindParseValue("water", worldRef);
+	std::string music = FindParseValue("music", worldRef);
+	std::string finish = FindParseValue("finish", worldRef);
 
-	std::cout << "background: " << bg << std::endl;
-	m_BmpBackgroundPtr = new Bitmap(String(bg.c_str()));
+	if (bg.c_str() != "")
+	{
+		std::cout << "background: " << bg << std::endl;
+		m_BmpBackgroundPtr = new Bitmap(String(bg.c_str()));
+	}
+	else
+	{
+		std::cout << "LEVEL MISSING BACKGROUND" << std::endl;
+	}
 
-	std::cout << "foreground: " << fg << std::endl;
-	m_BmpForegroundPtr = new Bitmap(String(fg.c_str()));
-	m_BmpForegroundPtr->SetTransparencyColor(COLOR(128, 128, 128));
+	if (fg.c_str() != "")
+	{
+		std::cout << "foreground: " << fg << std::endl;
+		m_BmpForegroundPtr = new Bitmap(String(fg.c_str()));
+		m_BmpForegroundPtr->SetTransparencyColor(COLOR(128, 128, 128));
+	}
+	else
+	{
+		std::cout << "LEVEL MISSING FOREGROUND" << std::endl;
+	}
 
-	std::cout << "collision: " << col << std::endl;
-	m_ActWorldPtr = new PhysicsActor(DOUBLE2(0, 0), 0, BodyType::STATIC);
-	m_ActWorldPtr->AddSVGFixture(String(col.c_str()), 0.0, 0.0);
+	if (col.c_str() != "")
+	{
+		std::cout << "collision: " << col << std::endl;
+		m_ActWorldPtr = new PhysicsActor(DOUBLE2(0, 0), 0, BodyType::STATIC);
+		m_ActWorldPtr->AddSVGFixture(String(col.c_str()), 0.0, 0.0);
+	}
+	else
+	{
+		std::cout << "LEVEL MISSING COLLISION" << std::endl;
+	}
+
+	if (water.c_str() != "")
+	{
+		std::cout << "water: " << water << std::endl;
+		m_ActWaterPtr = new PhysicsActor(DOUBLE2(0, 0), 0, BodyType::STATIC);
+		m_ActWaterPtr->AddSVGFixture(String(water.c_str()), 0.0, 0.0);
+		m_ActWaterPtr->SetSensor(true);
+		m_ActWaterPtr->AddContactListener(this);
+
+		// Water effect
+		m_SpriteWaterEffectPtr = new Sprite();
+		m_SpriteWaterEffectPtr->AddAnimation(String("Splash"), String("./resources/images/effects/water_splash.png"), 0, 0, 1, 9, 23);
+		m_SpriteWaterEffectPtr->SetAnimation(String("Splash"));
+	}
+	
+	if (music.c_str() != "")
+	{
+		std::cout << "music: " << music << std::endl;
+		m_SndMusicPtr = new FmodSound();
+		m_SndMusicPtr->CreateSound(String(music.c_str()));
+		m_SndMusicPtr->SetLoopCount(-1);
+		m_SndMusicPtr->Play();
+	}
+
+	// Create the finish
+	if (finish.c_str() != "")
+	{
+		std::cout << "finish: " << finish << std::endl;
+		new Finish(StringToDOUBLE2(FindParseValue("finish", worldRef)));
+	}
 
 	// Set the gravity (for possible space levels)
 	GAME_ENGINE->SetGravity(DOUBLE2(0, std::stod(FindParseValue("gravity", worldRef))));
@@ -212,7 +307,55 @@ void Level::CreateCaptive(const std::string& entRef)
 
 	// Create the captive
 	new Captive(StringToDOUBLE2(pos));
+	
+}
 
+void Level::CreateEnemy(const std::string& entRef)
+{
+
+	// Enemy type
+	std::string enemyType = FindParseValue("type", entRef);
+	// Position
+	DOUBLE2 pos = StringToDOUBLE2(FindParseValue("pos", entRef));
+
+	// Enemies are a bit different from other entities, as they respawn every few seconds
+	// Let the entity manager handle this one
+	ENT_MANAGER->AddEnemy(enemyType, pos);
+
+}
+
+void Level::CreateVendor(const std::string& entRef)
+{
+
+	// Position
+	std::string pos = FindParseValue("pos", entRef);
+	// Type
+	std::string type = FindParseValue("type", entRef);
+
+	// Create the vendor
+	new Vendor(StringToDOUBLE2(pos), std::stoi(type));
+
+}
+
+void Level::CreateCheckpoint(const std::string & entRef)
+{
+
+	// Position
+	std::string pos = FindParseValue("pos", entRef);
+
+	// Create the checkpoint
+	new Checkpoint(StringToDOUBLE2(pos));
+
+}
+
+void Level::CreateSpiketrap(const std::string & entRef)
+{
+
+	// Position
+	std::string pos = FindParseValue("pos", entRef);
+
+	// Create the spiketrap
+	new SpikeTrap(StringToDOUBLE2(pos));
 
 }
 
@@ -237,6 +380,13 @@ double Level::GetScale()
 
 }
 
+void Level::SetScale(double scale)
+{
+
+	m_Scale = scale;
+
+}
+
 DOUBLE2 Level::GetSpawnPosition()
 {
 
@@ -252,10 +402,32 @@ bool Level::IsOnGround(PhysicsActor* actOtherPtr)
 
 }
 
+void Level::BeginContact(PhysicsActor* actThisPtr, PhysicsActor* actOtherPtr)
+{
+
+	if (actOtherPtr->GetUserData() == int(EntityType::PLAYER))
+	{
+		// Offset based on player size and stuff
+		new Effect(actOtherPtr->GetPosition() + DOUBLE2(0, 20), m_SpriteWaterEffectPtr, m_WaterEffectLifetime);
+	}
+
+}
+
 void Level::Tick(double dTime)
 {
 
-	// Cant use this yet, dont have animated background files
+	// Mute music
+	if (GAME_ENGINE->IsKeyboardKeyPressed('M'))
+	{
+		m_MusicMuted = !m_MusicMuted;
+		if (m_MusicMuted) { 
+			m_SndMusicPtr->SetVolume(0); 
+		}
+		else {
+			m_SndMusicPtr->SetVolume(1); 
+		}
+		
+	}
 
 }
 
@@ -263,7 +435,16 @@ void Level::PaintBackground()
 {
 	
 	// Paint the background
-	GAME_ENGINE->DrawBitmap(m_BmpBackgroundPtr);
+	// Moves around a bit depending on player movement for added effect
+	DOUBLE2 charcPos = ENT_MANAGER->GetPlayer()->GetPosition();
+	charcPos.x *= -1; // Invert x
+
+	// Not too harsh, just a smooth, subtle movement
+	charcPos.x = charcPos.x / 20;
+	charcPos.y = charcPos.y / 8;
+
+	// Draw
+	GAME_ENGINE->DrawBitmap(m_BmpBackgroundPtr, charcPos);
 
 }
 

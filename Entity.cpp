@@ -11,28 +11,41 @@
 #define GAME_ENGINE (GameEngine::GetSingleton())
 #define ENT_MANAGER (EntityManager::GetInstance())
 
-Entity::Entity(DOUBLE2 pos, DOUBLE2 actSize, BodyType actBodyType, Sprite* spriteRef)
+Entity::Entity()
 {
 
-	// Create our physicsactor
-	m_ActPtr = new PhysicsActor(pos, 0, actBodyType);
-	m_ActPtr->AddBoxFixture(actSize.x, actSize.y, 0.0, 0.0);
-
-	// Copy the sprite
-	m_SpritePtr = spriteRef->Copy();
+	// In rare cases (eg coins, effects), the physicsactor needs to do something special
+	// Or there is no physics actor at all
+	// For that, we have an empty constructor so the entity can determine its own actor behavior
 
 	ENT_MANAGER->AddEntity(this);
 
 }
 
-
 Entity::Entity(DOUBLE2 pos, DOUBLE2 actSize, BodyType actBodyType)
+{
+
+	// In some cases our entity handles its own sprites
+	// Create our physicsactor
+	m_ActPtr = new PhysicsActor(pos, 0, actBodyType);
+	m_ActPtr->AddBoxFixture(actSize.x, actSize.y, 0.0, 0.0);
+	m_ActPtr->SetUserData(int(EntityType::WORLD));
+
+	ENT_MANAGER->AddEntity(this);
+
+}
+
+Entity::Entity(DOUBLE2 pos, DOUBLE2 actSize, BodyType actBodyType, Sprite* spritePtr)
 {
 
 	// Create our physicsactor
 	m_ActPtr = new PhysicsActor(pos, 0, actBodyType);
 	m_ActPtr->AddBoxFixture(actSize.x, actSize.y, 0.0, 0.0);
-	
+	m_ActPtr->SetUserData(int(EntityType::WORLD));
+
+	// Copy the sprite
+	m_SpritePtr = spritePtr->Copy();
+
 	ENT_MANAGER->AddEntity(this);
 
 }
